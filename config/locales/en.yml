@@ -1,0 +1,11 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  validations:
+    email:
+      incorrect: "Given email has incorrect format"
+      new_error: "Welp, this is our new error in english"
+  errors:
+    unprocessable_entity: "Cannot process the request. Alternate request to contain proper params"
