@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20220713123730) do
+ActiveRecord::Schema.define(:version => 0) do
 
   create_table "questions", :force => true do |t|
     t.string   "tittle"
@@ -19,11 +19,25 @@ ActiveRecord::Schema.define(:version => 20220713123730) do
     t.datetime "updated_at"
   end
 
+  create_table "user_types", :force => true do |t|
+    t.string   "user_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_types_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "user_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "firstname"
     t.string   "lastname"
     t.text     "email"
     t.integer  "age"
+    t.integer  "age_in_months"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

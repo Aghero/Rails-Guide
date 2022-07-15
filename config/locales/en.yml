@@ -7,5 +7,7 @@ en:
     email:
       incorrect: "Given email has incorrect format"
       new_error: "Welp, this is our new error in english"
+    lastname:
+      taken: "Lastname is already taken!"
   errors:
     unprocessable_entity: "Cannot process the request. Alternate request to contain proper params"
