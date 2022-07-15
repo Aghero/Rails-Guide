@@ -67,3 +67,6 @@ yarn-debug.log*
 !/storage/.keep
 
 .idea/*
+/tmp
+/db/*.sqlite3*
+.DS_Store

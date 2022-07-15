@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  # has_many :questions
+  has_many :questions
   # has_and_belongs_to_many :user_types
 
   # validates_presence_of [:firstname, :lastname]

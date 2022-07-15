@@ -309,7 +309,48 @@ Source: https://guides.rubyonrails.org/active_record_callbacks.html
 ### 7. Associations (Relations)
 In Rails, an association is a connection between two Active Record models. Why do we need associations between models? 
 Because they make common operations simpler and easier. 
+
 For example, consider a simple Rails application that includes a model for users and a model for questions. Each user can have many questions. 
-Without associations, the model declarations would look like this:
+Without associations, models and handling them would look somehow like this:
+```ruby
+class User < ActiveRecord::Base
+end
+
+class Question < ActiveRecord::Base
+end
+
+>> user=User.find_by_id(3)
+=> #<User id: 3, firstname: "Testi", lastname: "Tester", email: nil, age: 10, age_in_months: 120, created_at: "2022-07-15 02:06:35", updated_at: "2022-07-15 02:06:35">
+>> question=Question.create(user_id: user.id)
+=> #<Question id: 1, tittle: nil, description: nil, user_id: 3, created_at: "2022-07-15 02:22:52", updated_at: "2022-07-15 02:22:52">
+```
+then what happens if we wanted to access our `user` questions?
+```ruby
+>> user.questions
+NoMethodError: undefined method `questions' for #<User:0x00007fc4df3fadf8>
+```
+the other way around maybe?
+```ruby
+>> question.user
+NoMethodError: undefined method `user' for #<Question:0x00007fc4df3e1060>
+Did you mean?  user_id
+```
+Now lets try the same thing with associations:
+```ruby
+class User < ActiveRecord::Base
+
+  has_many :questions
+end
+
+class Question < ActiveRecord::Base
+  belongs_to :user
+end
+
+>> user.questions
+=> [#<Question id: 1, tittle: nil, description: nil, user_id: 3, created_at: "2022-07-15 02:22:52", updated_at: "2022-07-15 02:22:52">]
+>> question.user
+=> #<User id: 3, firstname: "Testi", lastname: "Tester", email: nil, age: 10, age_in_months: 120, created_at: "2022-07-15 02:06:35", updated_at: "2022-07-15 02:06:35">
+```
+Convenient isn't it?
 
 Source: https://guides.rubyonrails.org/association_basics.html
