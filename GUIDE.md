@@ -53,7 +53,7 @@ The `new` method will return a new object.
 ```ruby
 >> u=User.new(firstname: "Tester", lastname: "Test", age: 13)
 => #<User id: nil, firstname: "Tester", lastname: "Test", email: nil, age: 13, created_at: nil, updated_at: nil>
-  >> User.find_by_firstname("Tester")
+>> User.find_by_firstname("Tester")
 => nil
 >> u.save
 => true
@@ -338,7 +338,6 @@ Did you mean?  user_id
 Now lets try the same thing with associations:
 ```ruby
 class User < ActiveRecord::Base
-
   has_many :questions
 end
 
@@ -351,6 +350,32 @@ end
 >> question.user
 => #<User id: 3, firstname: "Testi", lastname: "Tester", email: nil, age: 10, age_in_months: 120, created_at: "2022-07-15 02:06:35", updated_at: "2022-07-15 02:06:35">
 ```
-Convenient isn't it?
+Convenient isn't it? 
+
+#### 7.1 The Types of Associations
+Rails supports six types of associations:
+```ruby
+belongs_to
+has_one
+has_many
+has_many :through
+has_one :through
+has_and_belongs_to_many
+```
+
+* `belongs_to` association is always used **in the model** that has foreign key.
+
+* `has_one` specifies a one-to-one association with another class. This method should only be used if **the other model** contains foreign key. 
+
+* `has_many` specifies a one-to-many association with another class.
+
+* `has_and_belongs_to_many` specifies a many-to-many relationship with another class. This associates two classes via an intermediate join table. 
+Unless the join table is explicitly specified as an option, it is guessed using the lexical order of the class names. 
+
+How would join table between Developer and Project be named by rails? `developers_projects` because “D” precedes “P” alphabetically.
+
+If your tables share a common prefix, it will only appear once at the beginning. 
+How would join table between CatalogCategory and CatalogProduct be named by rails? `catalog_categories_products`
+
 
 Source: https://guides.rubyonrails.org/association_basics.html

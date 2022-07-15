@@ -1,8 +1,8 @@
 class CreateUsersTypes < ActiveRecord::Migration
   def self.up
-    create_table :user_types_users do |t|
-      t.references :user
-      t.references :user_type
+    create_table :user_types_users, {id: false} do |t|
+      t.references :user, :null => false
+      t.references :user_type, :null => false
 
       t.timestamps
     end
